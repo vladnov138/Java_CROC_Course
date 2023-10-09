@@ -8,7 +8,7 @@ mvn clean test
 ## Запуск программы  
 1. IntelliJ Idea  
 2. CMD. 
-   ###Windows
+   1. Windows
    Рекомендуется сменить переключить кодовую страницу (Windows)
    для корректного отображения и обработки кириллицы:
    ```
@@ -18,7 +18,7 @@ mvn clean test
    ```
    java /src/main/java/com/company/Main.java 
    ```
-   ###Linux
+   2. Linux
    ```
    java -Dfile.Encoding=utf8 src/main/java/com/company/Main.java
    ```
