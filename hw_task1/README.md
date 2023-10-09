@@ -3,7 +3,7 @@
  палиндром  
 ## Запуск тестов через Maven  
 ```
-mvn clean test
+mvn test
 ```
 ## Запуск программы  
 1. IntelliJ Idea  
