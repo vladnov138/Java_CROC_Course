@@ -1,10 +1,8 @@
 package com.company;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
-
     /**
      * <p>
      * Возвращает результат проверки строки на палиндром (работает со знаками пунктуации .,?!:-)
@@ -17,22 +15,15 @@ public class Main {
         // (\\W (все, что не является словом) в Java убирает все русские символы, пришлось импровизировать)
         String expression = text.replaceAll("[.,?!:\\s-]", "");
         // Строку конвертируем в StringBuilder (StringBuilder - изменяемый тип для строки, у него есть
-        // метод reverse(), у String его нет, т.к. String неизменяемый тип данных), реверсируем строку,
-        // конвертируем в String через toString() и сравниваем строки через equalsIgnoreCase для независимого
-        // от регистра сравнения
+        // метод reverse(), у String его нет, т.к. String неизменяемый тип данных)
         return expression.equalsIgnoreCase(new StringBuilder(expression).reverse().toString());
     }
 
     public static void main(String[] args) {
-        // Выводим пользователю, что требуется сделать
-        System.out.println("Введите строку для проверки на палиндром: ");
-        // Подключаем Scanner для чтения ввода
+        System.out.println("Input the line for palindrome checking: ");
         Scanner in = new Scanner(System.in);
-        // Считываем строку с ввода
         String text = in.nextLine();
-        // Вызываем функцию isPalindrome и записываем результат в result
         boolean result = isPalindrome(text);
-        // Выводим результат через тернарный оператор
-        System.out.println(result ? "Палиндром" : "Не палиндром");
+        System.out.println(result ? "Palindrome" : "Not palindrome");
     }
 }
