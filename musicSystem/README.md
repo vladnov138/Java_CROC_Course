@@ -2,7 +2,11 @@
 Разработать свою музыкальную систему.
 ## Запуск
 1. IDE
-2. CMD
+2. CMD:
+```
+mvn package  
+java -cp ./target/musicSystem-1.0-SNAPSHOT.jar org.musicsystem.Main
+```
 ## Тесты
 Для запуска тестов:
 ```
