@@ -41,7 +41,7 @@ public final class ChessPositionParser {
         }
         y = line - '1';
         if (x == -1 || y < 0 || y > 7) { // Если значение х не изменилось или y вышел за пределы, то exception
-            throw new IllegalPositionException();
+            throw new IllegalPositionException(position);
         }
         return new ChessPositionImpl(x, y);
     }
