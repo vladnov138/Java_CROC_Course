@@ -24,7 +24,7 @@ public final class Application {
         } catch (IllegalMoveException e) {
             System.out.print("конь так не ходит: " + e.getMessage());
         } catch (IllegalPositionException e) {
-            System.out.print("невалидные координаты: ");
+            System.out.print("невалидные координаты: " + e.getMessage());
         }
     }
 }
