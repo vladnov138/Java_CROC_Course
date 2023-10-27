@@ -21,9 +21,9 @@ public class ChessPositionImpl implements ChessPosition {
                                                                 // идет с 0
     }
 
-    int x;
-    int y;
-    String position;
+    private final int x;
+    private final int y;
+    private final String position;
 
     /**
      * Возвращает позицию фигуры по горизонтали.
