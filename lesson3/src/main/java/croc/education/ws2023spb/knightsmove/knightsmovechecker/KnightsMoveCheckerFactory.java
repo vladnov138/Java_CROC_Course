@@ -1,4 +1,4 @@
-package croc.education.ws2023spb.knightsmove.knithsmovechecker;
+package croc.education.ws2023spb.knightsmove.knightsmovechecker;
 
 /**
  * Класс, реализующий фабричный метод, возвращающий обработчики, проверяющие, что последовательность клеток на шахматной

@@ -1,4 +1,4 @@
-package croc.education.ws2023spb.knightsmove.knithsmovechecker;
+package croc.education.ws2023spb.knightsmove.knightsmovechecker;
 
 import croc.education.ws2023spb.knightsmove.chessposition.ChessPositionParser;
 import croc.education.ws2023spb.knightsmove.exceptions.IllegalMoveException;
