@@ -1,4 +1,9 @@
-package croc.education.ws2023spb.knightsmove;
+package croc.education.ws2023spb.knightsmove.knithsmovechecker;
+
+import croc.education.ws2023spb.knightsmove.chessposition.ChessPositionParser;
+import croc.education.ws2023spb.knightsmove.exceptions.IllegalMoveException;
+import croc.education.ws2023spb.knightsmove.exceptions.IllegalPositionException;
+import croc.education.ws2023spb.knightsmove.chessposition.ChessPosition;
 
 public class KnightsMoveCheckerImpl implements KnightsMoveChecker {
     /**

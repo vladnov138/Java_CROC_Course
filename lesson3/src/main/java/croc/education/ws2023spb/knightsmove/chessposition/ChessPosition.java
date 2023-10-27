@@ -1,4 +1,4 @@
-package croc.education.ws2023spb.knightsmove;
+package croc.education.ws2023spb.knightsmove.chessposition;
 
 /**
  * Расположение фигуры на традиционной шахматной доске 8x8.

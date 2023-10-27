@@ -1,4 +1,7 @@
-package croc.education.ws2023spb.knightsmove;
+package croc.education.ws2023spb.knightsmove.knithsmovechecker;
+
+import croc.education.ws2023spb.knightsmove.exceptions.IllegalMoveException;
+import croc.education.ws2023spb.knightsmove.exceptions.IllegalPositionException;
 
 /**
  * Обработчик, проверяющий, что последовательность клеток на шахматной доске может быть пройдена ходом коня.

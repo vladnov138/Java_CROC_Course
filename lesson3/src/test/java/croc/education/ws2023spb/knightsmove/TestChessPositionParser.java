@@ -3,6 +3,9 @@ package croc.education.ws2023spb.knightsmove;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import croc.education.ws2023spb.knightsmove.chessposition.ChessPositionParser;
+import croc.education.ws2023spb.knightsmove.exceptions.IllegalPositionException;
+import croc.education.ws2023spb.knightsmove.chessposition.ChessPosition;
 import org.junit.jupiter.api.Test;
 
 /**
