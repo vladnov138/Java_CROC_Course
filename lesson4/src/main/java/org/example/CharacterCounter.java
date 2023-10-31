@@ -55,7 +55,7 @@ public class CharacterCounter {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
             for (char character :
                     charCounter.keySet()) {
-                out.write(character + ": " + charCounter.get(character) + "\n");
+                out.write(character + ": " + charCounter.get(character) + ",\n");
             }
         } catch (IOException e) {
             throw e;
