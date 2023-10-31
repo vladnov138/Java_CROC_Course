@@ -13,16 +13,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 /**
- * Тесты методов {@link CharacterCounter}.
+ * РўРµСЃС‚С‹ РєР»Р°СЃСЃР° {@link CharacterCounter}.
  *
  * @author Vladislav Novikov
  */
 public class TestCharacterCounter {
     /**
-     * Тест метода {@link CharacterCounter#count(String)}
+     * РўРµСЃС‚ РјРµС‚РѕРґР° {@link CharacterCounter#count(String)}
      * </p>
-     * Проверяет правильность подсчета символов
-     * @throws IOException при ошибке теста
+     * РџСЂРѕРІРµСЂСЏРµС‚ РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РїРѕРґСЃС‡РµС‚Р° С‡Р°СЃС‚РѕС‚С‹ РїРѕСЏРІР»РµРЅРёСЏ СЃРёРјРІРѕР»РѕРІ
+     * @throws IOException РїСЂРё РѕС€РёР±РєРµ С‚РµСЃС‚Р°
      */
     @Test
     public void testCount() throws IOException {
@@ -39,14 +39,15 @@ public class TestCharacterCounter {
                 .containsEntry('b', 1)
                 .containsEntry('C', 1)
                 .containsEntry('c', 1)
-                .containsEntry('D', 1);
+                .containsEntry('D', 1)
+                .containsEntry('Рђ', 1);
     }
 
     /**
-     * Тест метода {@link CharacterCounter#writeCharFrequencyToFile(String, HashMap)}
+     * РўРµСЃС‚ РјРµС‚РѕРґР° {@link CharacterCounter#writeCharFrequencyToFile(String, HashMap)}
      * </p>
-     * Проверяет правильность генерации файла
-     * @throws IOException при ошибке теста
+     * РџСЂРѕРІРµСЂСЏРµС‚ РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РіРµРЅРµСЂР°С†РёРё РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
+     * @throws IOException РїСЂРё РѕС€РёР±РєРµ С‚РµСЃС‚Р°
      */
     @Test
     public void testWriteCharFrequencyToFile() throws IOException {
