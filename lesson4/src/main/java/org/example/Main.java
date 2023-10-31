@@ -9,7 +9,7 @@ import java.util.Map;
 public class Main {
 
     /**
-     * Сортирует HashMap по значению (частоте повторения символов)
+     * Сортирует HashMap по значению (частоте повторения символов) по стандартному алгоритму (Java)
      *
      * @param charCounter HashMap с частотой повторения каждого символа
      * @return отсортированный LinkedHashMap по частоте повторения каждого символа
@@ -26,19 +26,27 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        String outPath = "./src/main/resources/output.txt";
         String inPath = "./src/main/resources/input.txt";
+        String outPath = "./src/main/resources/output.txt";
+        if (args.length == 2) { // Если нам передали наши аргументы, то значит это наши пути к файлам
+            inPath = args[0];
+            outPath = args[1];
+        } else if (args.length > 2) { // А если больше двух, пользователь хочет что-то непонятное
+            System.out.print("Правильная передача аргументов: <inPath> <outPath>");
+            return;
+        }
+
         try {
             HashMap<Character, Integer> charCounter = CharacterCounter.count(inPath);
             try {
                 CharacterCounter.writeCharFrequencyToFile(
                         outPath, sortHashMap(charCounter));
+                System.out.print("Вывод выполнен по пути: " + outPath);
             } catch (IOException e) {
-                System.out.println("Произошла ошибка при записи файла: " + e.getMessage());
+                System.out.print("Произошла ошибка при записи файла");
             }
         } catch (IOException e) {
-            System.out.println("Произошла ошибка при чтении файла: " + e.getMessage());
+            System.out.print("Произошла ошибка при чтении файла");
         }
-        System.out.println("Вывод выполнен по пути: " + outPath);
     }
 }
