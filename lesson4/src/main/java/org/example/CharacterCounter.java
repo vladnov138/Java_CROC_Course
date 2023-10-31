@@ -1,19 +1,36 @@
 package org.example;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
 
+/**
+ * Считает символы в указанном файле и выводит отсортированный результат в указанный файл
+ *
+ * @author Vladislav Novikov
+ */
 public class CharacterCounter {
 
-    public static LinkedHashMap<Character, Integer> count(String inPath) {
+    /**
+     * Считает кол-во символов в указанном файле (не считая пробелы и переносы строк)
+     *
+     * @param inPath путь к файлу с символами
+     * @return HashMap c частотой повторения символов
+     */
+    public static HashMap<Character, Integer> count(String inPath) throws IOException {
         File file = new File(inPath);
         HashMap<Character, Integer> charCounter = new HashMap<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-            int charactedCode;
-            while ((charactedCode = in.read()) != -1) {
-                char character = (char) charactedCode;
-                if (character == '\s' || character == '\n' || character == '\r')
+            int characterCode; // при считывании посимвольно мы получаем код символа
+            while ((characterCode = in.read()) != -1) {
+                char character = (char) characterCode; // переводим в char
+                if (character == '\s' || character == '\n' || character == '\r') { // пропускаем все лишнее
                     continue;
+                }
                 if (charCounter.containsKey(character)) {
                     charCounter.put(character, charCounter.get(character) + 1);
                 } else {
@@ -21,23 +38,19 @@ public class CharacterCounter {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw e;
         }
-        return sortHashmap(charCounter);
+        return charCounter;
     }
 
-    private static LinkedHashMap<Character, Integer> sortHashmap(HashMap<Character, Integer> charCounter) {
-        var list = new ArrayList<>(charCounter.entrySet());
-        list.sort(Map.Entry.comparingByValue());
-        LinkedHashMap<Character, Integer> result = new LinkedHashMap<>();
-        for (var entry :
-                list) {
-            result.put(entry.getKey(), entry.getValue());
-        }
-        return result;
-    }
-
-    public static void outCharCounter(String outPath, HashMap<Character, Integer> charCounter) {
+    /**
+     * Записывает HashMap с частотой повторения каждого символа в указанный файл
+     *
+     * @param outPath     путь к файлу для вывода
+     * @param charCounter HashMap с частотой повторения каждого символа
+     */
+    public static void writeCharFrequencyToFile(String outPath, HashMap<Character, Integer> charCounter)
+            throws IOException {
         File file = new File(outPath);
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
             for (char character :
@@ -45,7 +58,7 @@ public class CharacterCounter {
                 out.write(character + ": " + charCounter.get(character) + "\n");
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw e;
         }
     }
 }
