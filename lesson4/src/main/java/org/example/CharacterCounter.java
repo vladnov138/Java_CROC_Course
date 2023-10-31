@@ -1,9 +1,6 @@
 package org.example;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 
 public class CharacterCounter {
@@ -27,5 +24,17 @@ public class CharacterCounter {
             throw new RuntimeException(e);
         }
         return charCounter;
+    }
+
+    public static void outCharCounter(String path, HashMap<Character, Integer> charCounter) {
+        File file = new File(path);
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
+            for (char character :
+                    charCounter.keySet()) {
+                out.write(character + ": " + charCounter.get(character) + "\n");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
