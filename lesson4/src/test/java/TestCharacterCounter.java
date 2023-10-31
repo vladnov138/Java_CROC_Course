@@ -61,7 +61,7 @@ public class TestCharacterCounter {
         try (BufferedReader reader = new BufferedReader(new FileReader(outPath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                assertThat(line).isEqualTo("A: 3");
+                assertThat(line).isEqualTo("A: 3,");
             }
         }
         Path path = Paths.get(outPath);

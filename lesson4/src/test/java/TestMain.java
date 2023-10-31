@@ -7,7 +7,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -98,7 +97,7 @@ public class TestMain {
         // given:
         String inPath = "./src/test/resources/testSort.txt";
         String outPath = "./src/test/resources/output_testSort.txt";
-        String[] answer = {"C: 1", "b: 2", "A: 3"};
+        String[] answer = {"C: 1,", "b: 2,", "A: 3,"};
 
         // when:
         Main.main(new String[]{inPath, outPath});
