@@ -31,7 +31,7 @@ public class Main {
         if (args.length == 2) { // Если нам передали наши аргументы, то значит это наши пути к файлам
             inPath = args[0];
             outPath = args[1];
-        } else if (args.length > 2) { // А если больше двух, пользователь хочет что-то непонятное
+        } else if (args.length > 0) { // А если больше двух, пользователь хочет что-то непонятное
             System.out.print("Правильная передача аргументов: <inPath> <outPath>");
             return;
         }
