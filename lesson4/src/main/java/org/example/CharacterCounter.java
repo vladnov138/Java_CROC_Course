@@ -1,12 +1,12 @@
 package org.example;
 
 import java.io.*;
-import java.util.HashMap;
+import java.util.*;
 
 public class CharacterCounter {
 
-    public static HashMap<Character, Integer> count(String path) {
-        File file = new File(path);
+    public static LinkedHashMap<Character, Integer> count(String inPath) {
+        File file = new File(inPath);
         HashMap<Character, Integer> charCounter = new HashMap<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             int charactedCode;
@@ -23,11 +23,22 @@ public class CharacterCounter {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return charCounter;
+        return sortHashmap(charCounter);
     }
 
-    public static void outCharCounter(String path, HashMap<Character, Integer> charCounter) {
-        File file = new File(path);
+    private static LinkedHashMap<Character, Integer> sortHashmap(HashMap<Character, Integer> charCounter) {
+        var list = new ArrayList<>(charCounter.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+        LinkedHashMap<Character, Integer> result = new LinkedHashMap<>();
+        for (var entry :
+                list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
+    }
+
+    public static void outCharCounter(String outPath, HashMap<Character, Integer> charCounter) {
+        File file = new File(outPath);
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
             for (char character :
                     charCounter.keySet()) {
