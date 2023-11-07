@@ -6,6 +6,11 @@ import java.util.concurrent.ExecutionException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * Тесты методов {@link Main#detOneThread(long[][])} и {@link Main#detMultiThread(long[][])}
+ *
+ * @author Vladislav Novikov
+ */
 public class TestMain {
     /**
      * Тест метода {@link Main#detOneThread(long[][])}
@@ -21,7 +26,7 @@ public class TestMain {
 
         // when:
         long result = Main.detOneThread(matrix);
-        
+
         // then:
         assertThat(result).isEqualTo(answer);
     }

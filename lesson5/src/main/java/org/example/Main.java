@@ -29,11 +29,13 @@ public class Main {
             try {
                 return detMultiThread(matrix.getMatrix());
             } catch (ExecutionException | InterruptedException e) {
+                System.out.println("Поток был прерван или произошла ошибка при вычислении.");
                 throw new RuntimeException(e);
+            } finally {
+                executorService.shutdown();
             }
         });
         printResult("detOneThread", matrix, () -> detOneThread(matrix.getMatrix()));
-        executorService.shutdown();
     }
 
     /**
@@ -71,7 +73,7 @@ public class Main {
         for (var i = 0; i < a.length; i++) {
             var sign = (i % 2 == 0 ? 1 : -1);
             final int finalI = i;
-            // Вот тут если вставить detMultiThread, то можно уходить пить чай, т.к. будет ооочень долго считать.
+            // Вот тут если вставить detMultiThread, то будет ооочень долго считать.
             // Предполагаю, что связано это с тем, что он насоздавал потоки больше возможного кол-ва, и те, видимо,
             // ждут своей очереди.
             futures[i] = executorService.submit(() -> sign * a[finalI][0] * detOneThread(minor(a, finalI)));
