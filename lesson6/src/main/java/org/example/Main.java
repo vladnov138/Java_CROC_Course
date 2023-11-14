@@ -31,7 +31,7 @@ public class Main {
             System.out.print("Произошла ошибка при чтении файлов");
             return;
         }
-        // По-хорошему тут бы статику, но в заданном интерфейсе ее нет. Не рискнул использовать
+        // По-хорошему тут бы статику, но в заданном интерфейсе ее нет.
         new SpamFiltering().filterComments(comments, blackList);
         try {
             writeCommentsToFile(outPath, comments);
