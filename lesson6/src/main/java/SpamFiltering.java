@@ -1,8 +1,11 @@
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Фильтрует комментарии по заданному фильтру
+ *
+ * @author Vladislav Novikov
+ */
 public class SpamFiltering implements BlackListFilter {
 
     @Override

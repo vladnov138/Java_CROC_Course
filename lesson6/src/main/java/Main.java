@@ -1,63 +1,42 @@
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Set;
+
+import static Utils.FileReaderUtil.readBlackList;
+import static Utils.FileReaderUtil.readComments;
+import static Utils.FileWriterUtil.writeCommentsToFile;
 
 public class Main {
     public static void main(String[] args) {
+        String inCommentPath = "./src/main/resources/comments.txt";
+        String inBlackListPath = "./src/main/resources/blacklist.txt";
+        String outPath = "./src/main/resources/output.txt";
+        if (args.length == 3) {
+            inCommentPath = args[0];
+            inBlackListPath = args[1];
+            outPath = args[2];
+        } else if (args.length != 0) {
+            System.out.print("Правильная передача аргументов: <comments path> <blacklist path> <out comments path>");
+            return;
+        }
+
         ArrayList<String> comments;
         Set<String> blackList;
         try {
-            comments = readComments("./src/main/resources/comments.txt");
-            blackList = readBlackList("./src/main/resources/blackList.txt");
+            comments = readComments(inCommentPath);
+            blackList = readBlackList(inBlackListPath);
         } catch (IOException e) {
-            System.out.print("Произошла ошибка при чтении файлов. Убедитесь, что такой файл существует.");
+            System.out.print("Произошла ошибка при чтении файлов");
             return;
         }
-        System.out.println(comments);
+        // По-хорошему тут бы статику, но в заданном интерфейсе ее нет. Не рискнул использовать
         new SpamFiltering().filterComments(comments, blackList);
-        System.out.println(comments);
         try {
-            writeCommentsToFile("./src/main/resources/result.txt", comments);
+            writeCommentsToFile(outPath, comments);
         } catch (IOException e) {
             System.out.print("Возникла проблема при выводе результата");
             return;
         }
-    }
-
-    public static ArrayList<String> readComments(String pathToFile) throws IOException {
-        File file = new File(pathToFile);
-        ArrayList<String> comments = new ArrayList<>();
-        try (Scanner in = new Scanner(new FileReader(file))) {
-            while (in.hasNext()) {
-                comments.add(in.nextLine());
-            }
-        } catch (IOException e) {
-            throw e;
-        }
-        return comments;
-    }
-
-    public static Set<String> readBlackList(String pathToFile) throws FileNotFoundException {
-        File file = new File(pathToFile);
-        HashSet<String> blackList = new HashSet<>();
-        try (Scanner in = new Scanner(new FileReader(file))) {
-            while (in.hasNext()) {
-                blackList.add(in.nextLine());
-            }
-        } catch (IOException e) {
-            throw e;
-        }
-        return blackList;
-    }
-
-    public static void writeCommentsToFile(String pathToFile, List<String> comments) throws IOException {
-        File file = new File(pathToFile);
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
-            for (String comment :
-                    comments) {
-                out.write(comment + "\n");
-            }
-        } catch (IOException e) {
-            throw e;
-        }
+        System.out.print("Вывод выполнен по пути: " + outPath);
     }
 }
