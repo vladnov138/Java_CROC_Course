@@ -1,10 +1,12 @@
+package org.example;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 
-import static Utils.FileReaderUtil.readBlackList;
-import static Utils.FileReaderUtil.readComments;
-import static Utils.FileWriterUtil.writeCommentsToFile;
+import static org.example.Utils.FileReaderUtil.readBlackList;
+import static org.example.Utils.FileReaderUtil.readComments;
+import static org.example.Utils.FileWriterUtil.writeCommentsToFile;
 
 public class Main {
     public static void main(String[] args) {

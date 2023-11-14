@@ -1,4 +1,4 @@
-import Utils.FileWriterUtil;
+import org.example.Utils.FileWriterUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;

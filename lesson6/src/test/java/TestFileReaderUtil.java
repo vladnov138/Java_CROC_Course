@@ -1,4 +1,4 @@
-import Utils.FileReaderUtil;
+import org.example.Utils.FileReaderUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
