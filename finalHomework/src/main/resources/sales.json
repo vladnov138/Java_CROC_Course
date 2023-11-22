@@ -1,0 +1,121 @@
+[
+  {
+    "id": 0,
+    "salerId": 0,
+    "productId": 0,
+    "salesNum": "3",
+    "saleDate": "2023-11-17"
+  },
+  {
+    "id": 1,
+    "salerId": 0,
+    "productId": 2,
+    "salesNum": "6",
+    "saleDate": "2023-11-17"
+  },
+  {
+    "id": 2,
+    "salerId": 0,
+    "productId": 4,
+    "salesNum": "1",
+    "saleDate": "2023-11-17"
+  },
+  {
+    "id": 3,
+    "salerId": 1,
+    "productId": 2,
+    "salesNum": "7",
+    "saleDate": "2023-11-18"
+  },
+  {
+    "id": 4,
+    "salerId": 1,
+    "productId": 2,
+    "salesNum": "2",
+    "saleDate": "2023-11-19"
+  },
+  {
+    "id": 5,
+    "salerId": 0,
+    "productId": 3,
+    "salesNum": "3",
+    "saleDate": "2023-11-19"
+  },
+  {
+    "id": 6,
+    "salerId": 1,
+    "productId": 0,
+    "salesNum": "4",
+    "saleDate": "2023-11-20"
+  },
+  {
+    "id": 7,
+    "salerId": 1,
+    "productId": 0,
+    "salesNum": "7",
+    "saleDate": "2023-11-21"
+  },
+  {
+    "id": 8,
+    "salerId": 1,
+    "productId": 1,
+    "salesNum": "9",
+    "saleDate": "2023-11-21"
+  },
+  {
+    "id": 9,
+    "salerId": 0,
+    "productId": 4,
+    "salesNum": "5",
+    "saleDate": "2023-11-22"
+  },
+  {
+    "id": 10,
+    "salerId": 1,
+    "productId": 3,
+    "salesNum": "2",
+    "saleDate": "2023-11-22"
+  },
+  {
+    "id": 11,
+    "salerId": 2,
+    "productId": 5,
+    "salesNum": "12",
+    "saleDate": "2023-11-23"
+  },
+  {
+    "id": 12,
+    "salerId": 2,
+    "productId": 6,
+    "salesNum": "1",
+    "saleDate": "2023-11-23"
+  },
+  {
+    "id": 13,
+    "salerId": 2,
+    "productId": 7,
+    "salesNum": "20",
+    "saleDate": "2023-11-23"
+  },
+  {
+    "id": 14,
+    "salerId": 1,
+    "productId": 8,
+    "salesNum": "1",
+    "saleDate": "2023-11-23"
+  },
+  {
+    "id": 15,
+    "salerId": 2,
+    "productId": 9,
+    "salesNum": "2",
+    "saleDate": "2023-11-24"
+  },
+  {
+    "id": 16,
+    "salerId": 1,
+    "productId": 7,
+    "salesNum": "21",
+    "saleDate": "2023-11-25"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 0,
+    "name": "Xiaomi TV"
+  },
+  {
+    "id": 1,
+    "name": "MacBook Pro"
+  },
+  {
+    "id": 2,
+    "name": "Iphone X"
+  },
+  {
+    "id": 3,
+    "name": "Acer Aspire"
+  },
+  {
+    "id": 4,
+    "name": "Xiaomi Redmi 9T"
+  },
+  {
+    "id": 5,
+    "name": "Xiaomi Redmi 10T"
+  },
+  {
+    "id": 6,
+    "name": "HP zeon"
+  },
+  {
+    "id": 7,
+    "name": "Honor 10"
+  },
+  {
+    "id": 8,
+    "name": "Hi TV"
+  },
+  {
+    "id": 9,
+    "name": "Samsung TV"
+  }
+]
