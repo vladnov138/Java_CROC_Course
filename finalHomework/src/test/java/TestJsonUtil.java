@@ -28,17 +28,15 @@ public class TestJsonUtil {
     }
 
     /**
-     * Тест метода {@link JsonUtil#convertMeanSales(Map)}
+     * Тест метода {@link JsonUtil#convertMeanSales(double)}
      * </p>
      * Проверяет корректность конвертации данных о среднем кол-ве продаж
      */
     @Test
     public void testConvertMeanSales() {
         // given:
-        HashMap<String, Double> meanSales = new HashMap<>();
-        meanSales.put("24.11.2023", 2.0);
-        meanSales.put("25.11.2023", 3.0);
-        JsonObject expected = gson.fromJson("{\"24.11.2023\": 2.0, \"25.11.2023\": 3.0}",
+        double meanSales = 3.1;
+        JsonObject expected = gson.fromJson("{\"mean_sales\": 3.1}",
                 JsonObject.class);
 
         // when:

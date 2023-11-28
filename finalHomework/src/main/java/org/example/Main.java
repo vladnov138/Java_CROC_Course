@@ -48,7 +48,7 @@ public class Main {
             try {
                 dataWriter.writeDataToFile(jsonConverter.convertTopProducts(res),
                         outDir + "topProducts.json");
-                Map<String, Double> meanSales = getMeansalesCount(sales);
+                double meanSales = getMeansalesCount(sales);
                 dataWriter.writeDataToFile(jsonConverter.convertMeanSales(meanSales),
                         outDir + "Meansales.json");
                 System.out.print("Result saved in: " + outDir + ", files: topProducts.json, Meansales.json");
@@ -95,25 +95,19 @@ public class Main {
      * @param sales данные о продажах
      * @return среднее количество проданных товаров за каждый день
      */
-    private static Map<String, Double> getMeansalesCount(Sale[] sales) {
-        final var salesByDate = new HashMap<Date, IntSummaryStatistics>();
+    private static double getMeansalesCount(Sale[] sales) {
+        double s = 0;
+        double counter = 0;
+        var passedDates = new HashSet<Date>();
         for (Sale sale :
                 sales) {
-            final Date saleDate = sale.saleDate();
-            final var salesStats = salesByDate.getOrDefault(saleDate, new IntSummaryStatistics());
-            salesStats.accept(sale.salesCount());
-            salesByDate.put(saleDate, salesStats);
+            s += sale.salesCount();
+            Date saleDate = sale.saleDate();
+            if (!passedDates.contains(saleDate)) {
+                passedDates.add(saleDate);
+                counter++;
+            }
         }
-        var keySets = salesByDate.keySet();
-        final Map<String, Double> result = new HashMap<>();
-
-        String pattern = "dd.MM.yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        for (Date saleDate :
-                keySets) {
-            var salesStats = salesByDate.get(saleDate);
-            result.put(simpleDateFormat.format(saleDate), salesStats.getAverage());
-        }
-        return result;
+        return s / counter;
     }
 }

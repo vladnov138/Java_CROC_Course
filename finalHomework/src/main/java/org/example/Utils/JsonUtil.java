@@ -24,11 +24,13 @@ public class JsonUtil {
 
     /**
      * Конвертация данных о средних продажах в день
-     * @param meanSales данные о средних продажах в день
+     * @param meanSales среднее число продаж
      * @return JSON данные
      */
-    public JsonObject convertMeanSales(Map<String, Double> meanSales) {
-        return gson.toJsonTree(meanSales).getAsJsonObject();
+    public JsonObject convertMeanSales(double meanSales) {
+        JsonObject result = new JsonObject();
+        result.addProperty("mean_sales", meanSales);
+        return result;
     }
 
     /**
