@@ -10,6 +10,7 @@ import org.example.Utils.JsonUtil;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -43,10 +44,10 @@ public class Main {
 
         JsonUtil jsonConverter = new JsonUtil();
         try {
-            Product[] res = getTop(sales, products);
+            Map<Integer, Integer> res = getTop(sales, products);
             DataWriter dataWriter = new DataWriter();
             try {
-                dataWriter.writeDataToFile(jsonConverter.convertTopProducts(res),
+                dataWriter.writeDataToFile(jsonConverter.convertTopProducts(res, products),
                         outDir + "topProducts.json");
                 double meanSales = getMeansalesCount(sales);
                 dataWriter.writeDataToFile(jsonConverter.convertMeanSales(meanSales),
@@ -54,6 +55,8 @@ public class Main {
                 System.out.print("Result saved in: " + outDir + ", files: topProducts.json, Meansales.json");
             } catch (IOException e) {
                 System.out.print("Output error");
+            } catch (ModelNotFoundException e) {
+                System.out.print("Top product name not found");
             }
         } catch (ModelNotFoundException e) {
             System.out.print("Model not found. Make sure that models ids are valid");
@@ -68,7 +71,7 @@ public class Main {
      * @return топ 5 продуктов
      * @throws ModelNotFoundException товар не существует в перечне товаров
      */
-    private static Product[] getTop(Sale[] sales, Product[] products) throws ModelNotFoundException {
+    private static Map<Integer, Integer> getTop(Sale[] sales, Product[] products) throws ModelNotFoundException {
         var productSales = new HashMap<Integer, Integer>();
         for (Sale sale :
                 sales) {
@@ -81,19 +84,24 @@ public class Main {
                         .stream()
                         .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                         .limit(5)
-                        .toList();
-        Product[] result = new Product[sortedProductSales.size()];
-        for (int i = 0; i < sortedProductSales.size(); i++) {
-            result[i] = Product.getProductById(products, sortedProductSales.get(i).getKey());
-        }
-        return result;
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey,
+                                Map.Entry::getValue,
+                                (oldKey, newKey) -> oldKey, // Для коллизии, если будет
+                                LinkedHashMap::new
+                        ));
+//        Product[] result = new Product[sortedProductSales.size()];
+//        for (int i = 0; i < sortedProductSales.size(); i++) {
+//            result[i] = Product.getProductById(products, sortedProductSales.get(i).getKey());
+//        }
+        return sortedProductSales;
     }
 
     /**
      * Подсчитывает среднее количество проданных товаров за день
      *
      * @param sales данные о продажах
-     * @return среднее количество проданных товаров за каждый день
+     * @return среднее количество проданных товаров
      */
     private static double getMeansalesCount(Sale[] sales) {
         double s = 0;

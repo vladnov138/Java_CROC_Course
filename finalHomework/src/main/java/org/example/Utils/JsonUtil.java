@@ -3,6 +3,7 @@ package org.example.Utils;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.example.Exceptions.ModelNotFoundException;
 import org.example.Models.Product;
 
 import java.util.Map;
@@ -37,14 +38,17 @@ public class JsonUtil {
      * Конвертация данных о товарах
      * @param products данные о товарах
      * @return JSON данные
+     * @throws ModelNotFoundException если продукт не был найден по ID
      */
-    public JsonObject convertTopProducts(Product[] products) {
+    public JsonObject convertTopProducts(Map<Integer, Integer> topProducts, Product[] products) throws ModelNotFoundException {
         JsonObject result = new JsonObject();
         JsonArray jsonProducts = new JsonArray();
-        for (Product product : products) {
+        for (var entry : topProducts.entrySet()) {
             JsonObject jsonProduct = new JsonObject();
-            jsonProduct.addProperty("id", product.id());
-            jsonProduct.addProperty("name", product.name());
+            int id = entry.getKey();
+            jsonProduct.addProperty("id", id);
+            jsonProduct.addProperty("name", Product.getProductById(products, id).name());
+            jsonProduct.addProperty("sales_count", entry.getValue());
             jsonProducts.add(jsonProduct);
         }
         result.add("top", jsonProducts);

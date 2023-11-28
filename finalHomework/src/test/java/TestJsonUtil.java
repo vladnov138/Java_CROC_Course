@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import org.example.Exceptions.ModelNotFoundException;
 import org.example.Models.Product;
 import org.example.Utils.JsonUtil;
 import org.junit.jupiter.api.Assertions;
@@ -47,20 +48,23 @@ public class TestJsonUtil {
     }
 
     /**
-     * Тест метода {@link JsonUtil#convertTopProducts(Product[])}
+     * Тест метода {@link JsonUtil#convertTopProducts(Map, Product[])}
      * </p>
      * Проверяет корректность конвертации информации о товарах.
+     * @throws ModelNotFoundException при ошибке теста
      */
     @Test
-    public void testConvertProducts() {
+    public void testConvertProducts() throws ModelNotFoundException {
         // given:
         Product[] products = {new Product(0, "Prod1"), new Product(1, "Prod2")};
+        var topProducts = new HashMap<Integer, Integer>();
+        topProducts.put(0, 10);
         JsonObject expected = gson.fromJson(
-                "{\"top\": [{\"id\":0,\"name\":\"Prod1\"},{\"id\":1,\"name\":\"Prod2\"}]}",
+                "{\"top\": [{\"id\":0,\"name\":\"Prod1\", \"sales_count\": 10}]}",
                 JsonObject.class);
 
         // when:
-        JsonObject result = jsonUtil.convertTopProducts(products);
+        JsonObject result = jsonUtil.convertTopProducts(topProducts, products);
 
         // then:
         Assertions.assertEquals(expected, result);
