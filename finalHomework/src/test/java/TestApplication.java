@@ -47,7 +47,7 @@ public class TestApplication {
     public void testDefaultStart() throws IOException {
         // given:
         String outDir = "./src/main/resources/";
-        String expected = "Вывод выполнен в директорию: " + outDir +", файлы: topProducts.json, Meansales.json";
+        String expected = "Result saved in: " + outDir +", files: topProducts.json, Meansales.json";
 
         // when:
         Main.main(new String[]{});
@@ -64,7 +64,7 @@ public class TestApplication {
     @Test
     public void testInvalidArgsCount() {
         // given:
-        String expected = "Правильная передача аргументов: <products path> <salesmen path> <sales path> " +
+        String expected = "Valid arguments order: <products path> <salesmen path> <sales path> " +
                 "<stockproducts path> <out directory>";
 
         // when:
@@ -86,7 +86,7 @@ public class TestApplication {
         String salesPath = "./src/test/resources/sales.json";
         String stockProductsPath = "./src/test/resources/stockProducts.json";
         String outDir = "./src/test/resources/";
-        String expected = "Вывод выполнен в директорию: " + outDir + ", файлы: topProducts.json, Meansales.json";
+        String expected = "Result saved in: " + outDir + ", files: topProducts.json, Meansales.json";
 
         // when:
         Main.main(new String[]{productsPath, salesmenPath, salesPath, stockProductsPath, outDir});
@@ -108,7 +108,7 @@ public class TestApplication {
         String salesPath = "./src/test/resources/sales.json";
         String stockProductsPath = "./src/test/resources/stockProducts.json";
         String outDir = "./src/test/resources/";
-        String expected = "Возникла ошибка при чтении файлов. Убедитесь, что они существуют";
+        String expected = "Reading Error. Make sure that files are exists.";
 
         // when:
         Main.main(new String[]{productsPath, salesmenPath, salesPath, stockProductsPath, outDir});

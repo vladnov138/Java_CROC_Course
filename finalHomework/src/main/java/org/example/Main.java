@@ -25,7 +25,7 @@ public class Main {
             stockProductsPath = args[3];
             outDir = args[4];
         } else if (args.length != 0) {
-            System.out.print("Правильная передача аргументов: <products path> <salesmen path> <sales path> " +
+            System.out.print("Valid arguments order: <products path> <salesmen path> <sales path> " +
                     "<stockproducts path> <out directory>");
             return;
         }
@@ -37,7 +37,7 @@ public class Main {
             products = dataReader.readProducts(productsPath);
             sales = dataReader.readSales(salesPath);
         } catch (IOException e) {
-            System.out.print("Возникла ошибка при чтении файлов. Убедитесь, что они существуют");
+            System.out.print("Reading Error. Make sure that files are exists.");
             return;
         }
 
@@ -51,12 +51,12 @@ public class Main {
                 Map<String, Double> meanSales = getMeansalesCount(sales);
                 dataWriter.writeDataToFile(jsonConverter.convertMeanSales(meanSales),
                         outDir + "Meansales.json");
-                System.out.print("Вывод выполнен в директорию: " + outDir + ", файлы: topProducts.json, Meansales.json");
+                System.out.print("Result saved in: " + outDir + ", files: topProducts.json, Meansales.json");
             } catch (IOException e) {
-                System.out.print("Возникла ошибка при записи файла");
+                System.out.print("Output error");
             }
         } catch (ModelNotFoundException e) {
-            System.out.print("Модель не найдена");
+            System.out.print("Model not found. Make sure that models ids are valid");
         }
     }
 
