@@ -4,8 +4,11 @@ import org.example.Exceptions.ModelNotFoundException;
 import org.example.Models.Product;
 import org.example.Models.Sale;
 import org.example.Utils.DataReader;
+import org.example.Utils.DataWriter;
+import org.example.Utils.JsonConverter;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
@@ -20,17 +23,20 @@ public class Main {
             System.out.println("Error " + e);
             return;
         }
+        JsonConverter jsonConverter = new JsonConverter();
         try {
             var res = Main.getTop(sales, products);
-            for (var it :
-                    res) {
-                System.out.println(it.name);
-            }
+            DataWriter dataWriter = new DataWriter();
+            dataWriter.writeDataToFile(jsonConverter.convertProducts(res),
+                    "./src/main/resources/res.json");
+            var meanSales = Main.getMeansalesCount(sales);
+            System.out.println(meanSales);
+            dataWriter.writeDataToFile(jsonConverter.convertMeanSales(meanSales),
+                    "./src/main/resources/res2.json");
         } catch (ModelNotFoundException e) {
             System.out.println("Error + e");
             return;
         }
-        System.out.println(Main.getMeanSalesNum(sales));
     }
 
     /**
@@ -44,18 +50,17 @@ public class Main {
         var productSales = new HashMap<Integer, Integer>();
         for (Sale sale :
                 sales) {
-            int productId = sale.productId;
-            int salesNum = sale.salesNum;
-            if (productSales.containsKey(productId)) {
-                salesNum += productSales.get(productId);
-            }
-            productSales.put(productId, salesNum);
+            int productId = sale.productId();
+            int salesCount = sale.salesCount() + productSales.getOrDefault(productId, 0);
+            productSales.put(productId, salesCount);
         }
         var sortedProductSales =
                 productSales.entrySet()
                         .stream()
-                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).limit(5).toList();
-        Product[] result = new Product[5];
+                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                        .limit(5)
+                        .toList();
+        Product[] result = new Product[sortedProductSales.size()];
         for (int i = 0; i < sortedProductSales.size(); i++) {
             result[i] = Product.getProductById(products, sortedProductSales.get(i).getKey());
         }
@@ -67,26 +72,24 @@ public class Main {
      * @param sales данные о продажах
      * @return среднее количество проданных товаров за каждый день
      */
-    private static Map<Date, Double> getMeanSalesNum(Sale[] sales) {
-        final var salesByDate = new HashMap<Date, ArrayList<Integer>>();
+    private static Map<String, Double> getMeansalesCount(Sale[] sales) {
+        final var salesByDate = new HashMap<Date, IntSummaryStatistics>();
         for (Sale sale:
              sales) {
-            final Date saleDate = sale.saleDate;
-            final ArrayList<Integer> salesNums;
-            if (salesByDate.containsKey(saleDate)) {
-                salesNums = salesByDate.get(saleDate);
-            } else {
-                salesNums = new ArrayList<>();
-            }
-            salesNums.add(sale.salesNum);
-            salesByDate.put(saleDate, salesNums);
+            final Date saleDate = sale.saleDate();
+            final var salesStats = salesByDate.getOrDefault(saleDate, new IntSummaryStatistics());
+            salesStats.accept(sale.salesCount());
+            salesByDate.put(saleDate, salesStats);
         }
         var keySets = salesByDate.keySet();
-        final Map<Date, Double> result = new HashMap<>();
+        final Map<String, Double> result = new HashMap<>();
+
+        String pattern = "dd.MM.yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         for (Date saleDate :
              keySets) {
-            var salesNums = salesByDate.get(saleDate);
-            result.put(saleDate, salesNums.stream().mapToDouble(it -> it).sum() / salesNums.size());
+            var salesStats = salesByDate.get(saleDate);
+            result.put(simpleDateFormat.format(saleDate), salesStats.getAverage());
         }
         return result;
     }

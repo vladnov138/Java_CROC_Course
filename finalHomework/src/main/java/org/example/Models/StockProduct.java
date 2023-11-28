@@ -5,16 +5,5 @@ package org.example.Models;
  *
  * @author Vladislav Novikov
  */
-public class StockProduct {
-    public final int salerId;
-    public final int productId;
-    public final double cost;
-    public final int productNum;
 
-    public StockProduct(int salerId, int productId, double cost, int productNum) {
-        this.salerId = salerId;
-        this.productId = productId;
-        this.cost = cost;
-        this.productNum = productNum;
-    }
-}
+public record StockProduct(int salesmanId, int productId, double cost, int productCount) {}

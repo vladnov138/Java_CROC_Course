@@ -7,18 +7,4 @@ import java.util.Date;
  *
  * @author Vladislav Novikov
  */
-public class Sale {
-    public final int id;
-    public final int salerId;
-    public final int productId;
-    public final int salesNum;
-    public final Date saleDate;
-
-    public Sale(int id, int salerId, int productId, int salesNum, Date saleDate) {
-        this.id = id;
-        this.salerId = salerId;
-        this.productId = productId;
-        this.salesNum = salesNum;
-        this.saleDate = saleDate;
-    }
-}
+public record Sale (int id, int salesmanId, int productId, int salesCount, Date saleDate) {}
