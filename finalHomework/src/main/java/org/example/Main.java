@@ -37,7 +37,7 @@ public class Main {
             products = dataReader.readProducts(productsPath);
             sales = dataReader.readSales(salesPath);
         } catch (IOException e) {
-            System.out.println("Error: " + e);
+            System.out.print("Возникла ошибка при чтении файлов. Убедитесь, что они существуют");
             return;
         }
 
@@ -47,16 +47,16 @@ public class Main {
             DataWriter dataWriter = new DataWriter();
             try {
                 dataWriter.writeDataToFile(jsonConverter.convertTopProducts(res),
-                        outDir + "/topProducts.json");
+                        outDir + "topProducts.json");
                 Map<String, Double> meanSales = getMeansalesCount(sales);
-                System.out.println(meanSales);
                 dataWriter.writeDataToFile(jsonConverter.convertMeanSales(meanSales),
-                        outDir + "/Meansales.json");
+                        outDir + "Meansales.json");
+                System.out.print("Вывод выполнен в директорию: " + outDir + ", файлы: topProducts.json, Meansales.json");
             } catch (IOException e) {
-                System.out.println("Error: " + e);
+                System.out.print("Возникла ошибка при записи файла");
             }
         } catch (ModelNotFoundException e) {
-            System.out.println("Error: " + e);
+            System.out.print("Модель не найдена");
         }
     }
 

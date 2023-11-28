@@ -12,14 +12,28 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+/**
+ * Тесты для класса {@link DataReader}
+ *
+ * @author Vladislav Novikov
+ */
 public class TestDataReader {
     private DataReader dataReader;
 
+    /**
+     * Инициализация, запускаемая перед каждым тестом.
+     */
     @BeforeEach
     protected void setUp() {
         dataReader = new DataReader();
     }
 
+    /**
+     * Тест метода {@link DataReader#readProducts(String)}
+     * <p/>
+     * Проверяет правильность чтения товаров
+     * @throws IOException при ошибке теста
+     */
     @Test
     public void testReadProducts() throws IOException {
         // given:
@@ -37,6 +51,12 @@ public class TestDataReader {
         }
     }
 
+    /**
+     * Тест метода {@link DataReader#readSalesmen(String)}
+     * <p/>
+     * Проверяет правильность чтения продавцов
+     * @throws IOException при ошибке теста
+     */
     @Test
     public void testReadSalesmen() throws IOException {
         // given:
@@ -56,6 +76,12 @@ public class TestDataReader {
         }
     }
 
+    /**
+     * Тест метода {@link DataReader#readSales(String)}
+     * <p/>
+     * Проверяет правильность чтения продаж
+     * @throws IOException при ошибке теста
+     */
     @Test
     public void testReadSales() throws ParseException, IOException {
         // given:
@@ -78,6 +104,12 @@ public class TestDataReader {
         }
     }
 
+    /**
+     * Тест метода {@link DataReader#readStockProducts(String)}
+     * <p/>
+     * Проверяет правильность чтения запаса товаров у продавцов
+     * @throws IOException при ошибке теста
+     */
     @Test
     public void testReadStockProducts() throws IOException {
         // given:
