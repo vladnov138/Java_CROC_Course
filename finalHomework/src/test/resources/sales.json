@@ -1,0 +1,16 @@
+[
+  {
+    "id": 0,
+    "salerId": 0,
+    "productId": 0,
+    "salesCount": "1",
+    "saleDate": "2023-11-17"
+  },
+  {
+    "id": 1,
+    "salerId": 0,
+    "productId": 1,
+    "salesCount": "2",
+    "saleDate": "2023-11-17"
+  }
+]

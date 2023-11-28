@@ -64,7 +64,7 @@ public class DataReader {
      * @return десериализованные данные
      * @throws IOException при ошибке чтения файла
      */
-    public StockProduct[] stockProducts(String filename) throws IOException {
+    public StockProduct[] readStockProducts(String filename) throws IOException {
         String json = Files.readString(Paths.get(filename));
         return gson.fromJson(json, StockProduct[].class);
     }

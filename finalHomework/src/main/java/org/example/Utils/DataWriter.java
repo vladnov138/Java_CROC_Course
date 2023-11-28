@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 
 /**
  * Класс для записи сериализованных JSON данных в файл
@@ -26,11 +27,11 @@ public class DataWriter {
      * @param jsonData сериализованные данные
      * @param filePath путь к файлу
      */
-    public void writeDataToFile(JsonObject jsonData, String filePath) {
+    public void writeDataToFile(JsonObject jsonData, String filePath) throws IOException {
         try (FileWriter fileWriter = new FileWriter(filePath)) {
             gson.toJson(jsonData, fileWriter);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw e;
         }
     }
 }

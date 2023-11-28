@@ -1,92 +1,92 @@
 [
   {
-    "salerId": 0,
+    "salesmanId": 0,
     "productId": 0,
     "cost": 127.0,
-    "num": 10
+    "productCount": 10
   },
   {
-    "salerId": 0,
+    "salesmanId": 0,
     "productId": 1,
     "cost": 150.0,
-    "num": 7
+    "productCount": 7
   },
   {
-    "salerId": 0,
+    "salesmanId": 0,
     "productId": 2,
     "cost": 137.0,
-    "num": 2
+    "productCount": 2
   },
   {
-    "salerId": 0,
+    "salesmanId": 0,
     "productId": 3,
     "cost": 99.0,
-    "num": 1
+    "productCount": 1
   },
   {
-    "salerId": 0,
+    "salesmanId": 0,
     "productId": 4,
     "cost": 200.0,
-    "num": 8
+    "productCount": 8
   },
   {
-    "salerId": 1,
+    "salesmanId": 1,
     "productId": 0,
     "cost": 125.0,
-    "num": 3
+    "productCount": 3
   },
   {
-    "salerId": 1,
+    "salesmanId": 1,
     "productId": 1,
     "cost": 177.0,
-    "num": 4
+    "productCount": 4
   },
   {
-    "salerId": 1,
+    "salesmanId": 1,
     "productId": 2,
     "cost": 137.0,
-    "num": 10
+    "productCount": 10
   },
   {
-    "salerId": 1,
+    "salesmanId": 1,
     "productId": 3,
     "cost": 100.0,
-    "num": 1
+    "productCount": 1
   },
   {
-    "salerId": 1,
+    "salesmanId": 1,
     "productId": 4,
     "cost": 100.0,
-    "num": 1
+    "productCount": 1
   },
   {
-    "salerId": 2,
+    "salesmanId": 2,
     "productId": 5,
     "cost": 300.0,
-    "num": 3
+    "productCount": 3
   },
   {
-    "salerId": 2,
+    "salesmanId": 2,
     "productId": 6,
     "cost": 130.0,
-    "num": 1
+    "productCount": 1
   },
   {
-    "salerId": 2,
+    "salesmanId": 2,
     "productId": 7,
     "cost": 500.0,
-    "num": 4
+    "productCount": 4
   },
   {
-    "salerId": 2,
+    "salesmanId": 2,
     "productId": 8,
     "cost": 50.0,
-    "num": 99
+    "productCount": 99
   },
   {
-    "salerId": 2,
+    "salesmanId": 2,
     "productId": 9,
     "cost": 199.0,
-    "num": 29
+    "productCount": 29
   }
 ]

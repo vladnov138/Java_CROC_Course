@@ -12,13 +12,13 @@ import java.util.Map;
  *
  * @author Vladislav Novikov
  */
-public class JsonConverter {
+public class JsonUtil {
     private Gson gson;
 
     /**
      * Constructor
      */
-    public JsonConverter() {
+    public JsonUtil() {
         gson = new Gson();
     }
 
@@ -36,7 +36,7 @@ public class JsonConverter {
      * @param products данные о товарах
      * @return JSON данные
      */
-    public JsonObject convertProducts(Product[] products) {
+    public JsonObject convertTopProducts(Product[] products) {
         JsonObject result = new JsonObject();
         JsonArray jsonProducts = new JsonArray();
         for (Product product : products) {

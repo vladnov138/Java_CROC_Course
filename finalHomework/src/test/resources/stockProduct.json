@@ -1,0 +1,14 @@
+[
+  {
+    "salesmanId": 0,
+    "productId": 0,
+    "cost": 1.0,
+    "productCount": 1
+  },
+  {
+    "salesmanId": 0,
+    "productId": 1,
+    "cost": 2.0,
+    "productCount": 2
+  }
+]

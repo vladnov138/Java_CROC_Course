@@ -5,4 +5,4 @@ package org.example.Models;
  *
  * @author Vladislav Novikov
  */
-public record Salesman(int id, String firstname, String lastname){}
+public record Salesman(int id, String firstName, String lastName){}
